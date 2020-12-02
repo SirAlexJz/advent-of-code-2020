@@ -1,4 +1,4 @@
-const { getInput } = require('../main');
+const { getInput } = require('../inputHandler');
 
 getInput('1').then(lines => {
     numbers = lines.map(number => Number(number));

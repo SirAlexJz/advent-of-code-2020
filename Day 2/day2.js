@@ -1,4 +1,4 @@
-const { getInput } = require('../main');
+const { getInput } = require('../inputHandler');
 
 getInput('2').then(lines => {
     let validPasswords = 0;
