@@ -1,34 +1,28 @@
-const fs = require('fs');
-const readline = require('readline');
+const { getInput } = require('../main');
 
-const lineReader = readline.createInterface({
-    input: fs.createReadStream('input.txt')
-});
-
-let validPasswords = 0;
-lineReader.on('line', line => {
-    let rule = generateRule(line.split(': ')[0]);
-    let password = line.split(': ')[1];
-    // Part 1 Solution
-    // password = password.split(rule.letter).length - 1;
-    // if (password >= rule.limits[0] && password <= rule.limits[1]) {
-    //     validPasswords++;
-    // }
-
-    // Part 2 Solution
-    let letterOccurances = 0;
-    if (password[rule.limits[0] - 1] == rule.letter) {
-        letterOccurances++;
-    }
-    if (password[rule.limits[1] - 1] == rule.letter) {
-        letterOccurances++;
-    }
-    if (letterOccurances == 1) {
-        validPasswords++;
-    }
-});
-
-lineReader.on('close', () => {
+getInput('2').then(lines => {
+    let validPasswords = 0;
+    lines.forEach(line => {
+        let rule = generateRule(line.split(': ')[0]);
+        let password = line.split(': ')[1];
+        // Part 1 Solution
+        // password = password.split(rule.letter).length - 1;
+        // if (password >= rule.limits[0] && password <= rule.limits[1]) {
+        //     validPasswords++;
+        // }
+    
+        // Part 2 Solution
+        let letterOccurances = 0;
+        if (password[rule.limits[0] - 1] == rule.letter) {
+            letterOccurances++;
+        }
+        if (password[rule.limits[1] - 1] == rule.letter) {
+            letterOccurances++;
+        }
+        if (letterOccurances == 1) {
+            validPasswords++;
+        }
+    });
     console.log(validPasswords);
 });
 
@@ -39,4 +33,3 @@ function generateRule(rule) {
         letter: rule[1]
     }
 }
-

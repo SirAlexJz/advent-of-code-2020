@@ -1,17 +1,7 @@
-const fs = require('fs');
-const readline = require('readline');
+const { getInput } = require('../main');
 
-let numbers = [];
-
-const lineReader = readline.createInterface({
-    input: fs.createReadStream('input.txt')
-});
-
-lineReader.on('line', line => {
-    numbers.push(Number(line));
-});
-
-lineReader.on('close', ()=> {
+getInput('1').then(lines => {
+    numbers = lines.map(number => Number(number));
     // Part One Solution
     // for (let i = 0; i < numbers.length; i++) {
     //     let num1 = numbers[i];
